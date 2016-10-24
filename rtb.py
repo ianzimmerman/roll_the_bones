@@ -48,7 +48,7 @@ def rtb():
 
 def test(n_rolls):
     results = {n: 0 for n in [1,2,3,6]}
-    last_roll, current_streak, singles_record = (0, 0, 0)
+    current_streak, singles_record = 0, 0
 
     for r in range(n_rolls):
         buffs = len(rtb())
