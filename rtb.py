@@ -44,9 +44,9 @@ def rtb():
     }
 
     throw = Counter(dice_roll(6))
-    best_die, n_rolls = throw.most_common(1)[0]
+    best_roll = throw.most_common(1)[0][1]
 
-    return [buffs[b] for b, n in throw.items() if n == n_rolls]
+    return [buffs[b] for b, n in throw.items() if n == best_roll]
 
 def test(n_rolls):
     results = {n: 0 for n in [1,2,3,6]}
@@ -63,7 +63,7 @@ def test(n_rolls):
             current_streak = 0
 
     print('---')
-    print('Most consecutive singles: {}'.format(singles_record))
+    print('Most consecutive singles over {:,} rolls: {}'.format(n_rolls, singles_record))
     for n_buffs, times in results.items():
         print('{} Buff:'.format(n_buffs), '{:.2%}'.format(times/n_rolls))
 
