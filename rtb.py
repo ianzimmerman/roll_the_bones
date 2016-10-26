@@ -86,11 +86,12 @@ def test(rolls):
         buffs = len(roll_the_bones())
         results[buffs] += 1
 
-    print('| Results for {:,} rolls'.format(rolls))
+    print('Results for {:,} rolls'.format(rolls))
     for n_buffs, times in results.items():
-        print('| {} Buff:'.format(n_buffs), '{:.2%}'.format(times/rolls))
+        print('{} Buff:'.format(n_buffs), '{:.2%}'.format(times/rolls))
     
-    print('| Calc time: {:.3} seconds'.format(time.time()-start_time))
+    print()
+    print('Calc time: {:.3} seconds'.format(time.time()-start_time))
 
 if __name__ == '__main__':
     while True:
@@ -102,7 +103,7 @@ if __name__ == '__main__':
             print('{}: {}'.format(len(result), ', '.join(result)))
         
         elif task in ['t', 'test']: 
-            test(10000)
+            test(100000)
         
         elif task in ['l', 'list']:
             for b in range(1,7):
