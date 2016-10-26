@@ -5,14 +5,22 @@ import time
 from collections import Counter
 from operator import itemgetter
 
-def dice_roll(n_dice=1, sides=6):
+def dice_roll(dice=1, sides=6):
+    '''
+    returns a list of dice rolls with given sides
+    '''
+    
     rolls = list()
-    for r in range(n_dice):
+    for r in range(dice):
         rolls.append(random.randint(1,sides))
     
     return rolls
 
 def get_bone(bone):
+    '''
+    returns dictionary of dice info when given an integer dice face number
+    '''
+    
     buffs = {
         1: { 
             'name': 'Broadsides',
@@ -53,6 +61,11 @@ def get_bone(bone):
 
 
 def roll_the_bones():
+    '''
+    returns a list of highest rolling dice. 
+    e.g. if dice_roll(6) returns [1,4,4,6,6,3] this returns [4,6]
+    '''
+    
     die             = itemgetter(0)
     roll_count      = itemgetter(1)
 
@@ -61,17 +74,21 @@ def roll_the_bones():
     
     return [die(roll) for roll in throw.items() if roll_count(roll) == high_roll_count]
 
-def test(n_rolls):
+def test(rolls):
+    '''
+    finds percentage of rolls that return 1, 2, 3, or 6 buffs
+    '''
+    
     start_time = time.time()
     results = {n: 0 for n in [1,2,3,6]}
 
-    for r in range(n_rolls):
+    for r in range(rolls):
         buffs = len(roll_the_bones())
         results[buffs] += 1
 
-    print('| Results for {:,} rolls'.format(n_rolls))
+    print('| Results for {:,} rolls'.format(rolls))
     for n_buffs, times in results.items():
-        print('| {} Buff:'.format(n_buffs), '{:.2%}'.format(times/n_rolls))
+        print('| {} Buff:'.format(n_buffs), '{:.2%}'.format(times/rolls))
     
     print('| Calc time: {:.3} seconds'.format(time.time()-start_time))
 
