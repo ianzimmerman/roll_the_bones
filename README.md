@@ -1,6 +1,16 @@
-# roll_the_bones
-Roll the bones!
+# World of Warcraft: Legion, Roll the Bones Tester
+Testing and modeling for Legion Rogue Roll the Bones ability.
 
-Ever wanted to roll the bones? Here's how. 
+Python 3 only.
 
-./rtb.py and see which buffs you get. Also test likely outcomes over 10k rolls. 
+Run & Use:
+1) Execute rtb.py from prompt
+2) 'r' for roll, 't' for test, 'l' to list buffs, 'x' to exit
+
+Module:
+---
+
+from rtb import roll_the_bones, get_bone
+
+result = [get_bone(r)['name'] for r in roll_the_bones()]
+print('{}: {}'.format(len(result), ', '.join(result)))
