@@ -7,14 +7,13 @@ from operator import itemgetter
 
 def dice_roll(dice=1, sides=6):
     '''
-    returns a list of dice rolls with given sides
+    returns a dice roll generator for number of dice (dice) with (sides) number sides
     '''
     
-    rolls = list()
-    for r in range(dice):
-        rolls.append(random.randint(1,sides))
-    
-    return rolls
+    n = 0
+    while n < dice:
+        yield random.randint(1, sides)
+        n += 1
 
 def get_bone(bone):
     '''
