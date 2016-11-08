@@ -73,7 +73,7 @@ def roll_the_bones():
     
     return [die(roll) for roll in throw.items() if roll_count(roll) == high_roll_count]
 
-def test(rolls):
+def test(rolls=1000):
     '''
     finds percentage of rolls that return 1, 2, 3, or 6 buffs
     '''
@@ -93,16 +93,18 @@ def test(rolls):
     print('Calc time: {:.3} seconds'.format(time.time()-start_time))
 
 if __name__ == '__main__':
+    print('Roll (r), test (t), list (l) or exit (x)')
     while True:
         print()
-        task = input('Roll (r), test (t), list (l) or exit (x): ').lower().strip()
+        task = input('').lower().strip()
     
         if task in ['r', 'roll']:
             result = [get_bone(r)['name'] for r in roll_the_bones()]
             print('{}: {}'.format(len(result), ', '.join(result)))
         
-        elif task in ['t', 'test']: 
-            test(100000)
+        elif task in ['t', 'test']:
+            rolls = int(input('Rolls: ').strip())
+            test(rolls)
         
         elif task in ['l', 'list']:
             for b in range(1,7):
@@ -111,3 +113,5 @@ if __name__ == '__main__':
         
         elif task in ['x', 'exit']:
             break
+        else:
+            print('Unknown command: {}'.format(task))
