@@ -65,13 +65,13 @@ def roll_the_bones():
     e.g. if dice_roll(6) returns [1,4,4,6,6,3] this returns [4,6]
     '''
     
-    die             = itemgetter(0)
+    face             = itemgetter(0)
     roll_count      = itemgetter(1)
 
     throw           = Counter(dice_roll(6))
     high_roll_count = roll_count(throw.most_common(1)[0])
     
-    return [die(roll) for roll in throw.items() if roll_count(roll) == high_roll_count]
+    return [face(roll) for roll in throw.items() if roll_count(roll) == high_roll_count]
 
 def test(rolls=1000):
     '''
